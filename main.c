@@ -1,6 +1,6 @@
 /*
 	Eduardo Morais
-	Objetivo: Ler um modelo de programação linear. Apresentar o modelo na forma dual e as matrizes que o compõem. 
+	Objetivo: Ler um modelo de programação linear a partir de um arquivo. Apresentar o modelo na forma dual e as matrizes que o compõem. 
 */
 
 #include <stdio.h>
@@ -11,24 +11,23 @@
 #define IGUAL_IGUAL 1
 
 /* Prototipos */
-
 FILE *abreArq (char *nomeArq, char *modoAbertura, char *msgErro);
+char **alocaMatrizChar(int qtdL, int qtdC);
+int **alocaMatriz (int qtdL, int qtdC);
+int *alocaVetor(int qtd);
+int validaVariavel(char *str);
+void transformaModeloDual(int **mtzCoeficientes,int qtdL ,int qtdC , int *funcObjeva,int qtdFO, int *igualdadeModelo,int qtdIGM);
 void apresentaVtrX(int **mtz, int qtdC);
 void apresentaModelo(char **mtz, int qtdC, int qtdL);
-char ** alocaMatrizChar(int qtdL, int qtdC);
 void apresentaVlrVarRest(int **mtz, int qtdL, int qtdC);
 void apresentaVlrMtzCoeficientes(int **mtz, int qtdL, int qtdC);
 void apresentaMtzModelo(int **mtzCoeficientes, int *funcObjeva, int qtdL, int qtdC);
-void leValidaOpcao(char *msn, char *msnErro, char *opcoesValidas, char *opcao);
-void populaDados(int **mtz,int *funcObjeva,int *igualdadeModelo,int qtdL, int qtdC);
-int **alocaMatriz (int qtdL, int qtdC);
-int validaVariavel(char *str);
-void verificaLinhasColunas(int *qtdL, int *qtdC);
-void apresentaValoresMatriz(int **mtz, int qtdC, int qtdL);
-int *alocaVetor(int qtd);
 void apresentaValoresVetor(int *vet, int qtdP);
 void apresentaVlrFuncObj(int *funcObjeva, int qtd);
-void transformaModeloDual(int **mtzCoeficientes,int qtdL ,int qtdC , int *funcObjeva,int qtdFO, int *igualdadeModelo,int qtdIGM);
+void apresentaValoresMatriz(int **mtz, int qtdC, int qtdL);
+void leValidaOpcao(char *msn, char *msnErro, char *opcoesValidas, char *opcao);
+void populaDados(int **mtz,int *funcObjeva,int *igualdadeModelo,int qtdL, int qtdC);
+void verificaLinhasColunas(int *qtdL, int *qtdC);
 
 int main(int argc, char *argv[]) {
 	char opcao, **modelo;
